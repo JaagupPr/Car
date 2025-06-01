@@ -11,3 +11,4 @@ namespace Car.CarTest.Mock
         public IFileProvider ContentRootFileProvider { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
     }
+}
