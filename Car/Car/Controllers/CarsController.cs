@@ -34,5 +34,36 @@ namespace Car.Controllers
                 ModifiedAt = c.ModifiedAt
             }));
         }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(CreateCarViewModel vm)
+        {
+            if (!ModelState.IsValid)
+                return View(vm);
+
+            var car = new Vehicle
+            {
+                Build = vm.Build,
+                Model = vm.Model,
+                CarType = vm.CarType,
+                Fuel = vm.Fuel,
+                Color = vm.Color,
+                Year = vm.Year,
+                Mileage = vm.Mileage,
+                Doors = vm.Doors,
+                Seats = vm.Seats,
+                DailyRate = vm.DailyRate
+            };
+
+            await _carServices.AddCarAsync(car);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

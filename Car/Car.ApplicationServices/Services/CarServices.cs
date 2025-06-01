@@ -19,5 +19,16 @@ namespace Car.ApplicationServices.Services
                 .Where(v => !v.Deleted)
                 .ToListAsync();
         }
+
+        public async Task AddCarAsync(Vehicle vehicle)
+        {
+            vehicle.CreatedAt = DateTime.UtcNow;
+            vehicle.ModifiedAt = DateTime.UtcNow;
+            vehicle.Deleted = false;
+
+            _context.Cars.Add(vehicle);
+            await _context.SaveChangesAsync();
+
+        }
     }
 }
