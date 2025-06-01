@@ -1,0 +1,30 @@
+﻿@model Car.Models.DeleteCarViewModel
+
+@{
+    ViewData["Title"] = "Delete Car";
+}
+
+<h1>Delete Car</h1>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-3">Build</dt>
+        <dd class="col-sm-9">@Model.Build</dd>
+        <dt class="col-sm-3">Model</dt>
+        <dd class="col-sm-9">@Model.Model</dd>
+        <dt class="col-sm-3">Car Type</dt>
+        <dd class="col-sm-9">@Model.CarType</dd>
+        <dt class="col-sm-3">Color</dt>
+        <dd class="col-sm-9">@Model.Color</dd>
+        <dt class="col-sm-3">Year</dt>
+        <dd class="col-sm-9">@Model.Year</dd>
+        <dt class="col-sm-3">Mileage</dt>
+        <dd class="col-sm-9">@Model.Mileage</dd>
+    </dl>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

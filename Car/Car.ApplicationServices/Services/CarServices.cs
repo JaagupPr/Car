@@ -41,5 +41,14 @@ namespace Car.ApplicationServices.Services
             _context.Cars.Update(vehicle);
             await _context.SaveChangesAsync();
         }
+        public async Task DeleteCarAsync(int id)
+        {
+            var vehicle = await _context.Cars.FindAsync(id);
+            if (vehicle != null)
+            {
+                vehicle.Deleted = true;
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

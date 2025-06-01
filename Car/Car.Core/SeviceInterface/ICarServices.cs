@@ -6,5 +6,5 @@ public interface ICarServices
     Task AddCarAsync(Vehicle vehicle);
     Task<Vehicle> GetCarByIdAsync(int id);
     Task UpdateCarAsync(Vehicle vehicle);
-
+    Task DeleteCarAsync(int id);
 }
