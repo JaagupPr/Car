@@ -1,0 +1,41 @@
+﻿@model Car.Models.DetailsCarViewModel
+
+@{
+    ViewData["Title"] = "Car Details";
+}
+
+<h1>Car Details</h1>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-3">Build</dt>
+        <dd class="col-sm-9">@Model.Build</dd>
+        <dt class="col-sm-3">Model</dt>
+        <dd class="col-sm-9">@Model.Model</dd>
+        <dt class="col-sm-3">Car Type</dt>
+        <dd class="col-sm-9">@Model.CarType</dd>
+        <dt class="col-sm-3">Fuel</dt>
+        <dd class="col-sm-9">@Model.Fuel</dd>
+        <dt class="col-sm-3">Color</dt>
+        <dd class="col-sm-9">@Model.Color</dd>
+        <dt class="col-sm-3">Year</dt>
+        <dd class="col-sm-9">@Model.Year</dd>
+        <dt class="col-sm-3">Mileage</dt>
+        <dd class="col-sm-9">@Model.Mileage</dd>
+        <dt class="col-sm-3">Doors</dt>
+        <dd class="col-sm-9">@Model.Doors</dd>
+        <dt class="col-sm-3">Seats</dt>
+        <dd class="col-sm-9">@Model.Seats</dd>
+        <dt class="col-sm-3">Daily Rate</dt>
+        <dd class="col-sm-9">@Model.DailyRate.ToString("C")</dd>
+        <dt class="col-sm-3">Created At</dt>
+        <dd class="col-sm-9">@Model.CreatedAt.ToString("g")</dd>
+        <dt class="col-sm-3">Modified At</dt>
+        <dd class="col-sm-9">@Model.ModifiedAt.ToString("g")</dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

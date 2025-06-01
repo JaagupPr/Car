@@ -64,6 +64,30 @@ namespace Car.Controllers
             await _carServices.AddCarAsync(car);
             return RedirectToAction(nameof(Index));
         }
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var car = await _carServices.GetCarByIdAsync(id);
+            if (car == null) return NotFound();
 
+            var viewModel = new DetailsCarViewModel
+            {
+                Id = car.Id,
+                Build = car.Build,
+                Model = car.Model,
+                CarType = car.CarType,
+                Fuel = car.Fuel,
+                Color = car.Color,
+                Year = car.Year,
+                Mileage = car.Mileage,
+                Doors = car.Doors,
+                Seats = car.Seats,
+                DailyRate = car.DailyRate,
+                CreatedAt = car.CreatedAt,
+                ModifiedAt = car.ModifiedAt
+            };
+
+            return View(viewModel);
+        }
     }
 }

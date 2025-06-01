@@ -30,5 +30,10 @@ namespace Car.ApplicationServices.Services
             await _context.SaveChangesAsync();
 
         }
+        public async Task<Vehicle> GetCarByIdAsync(int id)
+        {
+            return await _context.Cars
+                .FirstOrDefaultAsync(v => v.Id == id && !v.Deleted);
+        }
     }
 }
