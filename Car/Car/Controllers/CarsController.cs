@@ -89,5 +89,52 @@ namespace Car.Controllers
 
             return View(viewModel);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(EditCarViewModel vm)
+        {
+            if (!ModelState.IsValid)
+                return View(vm);
+
+            var car = await _carServices.GetCarByIdAsync(vm.Id);
+            if (car == null) return NotFound();
+
+            car.Build = vm.Build;
+            car.Model = vm.Model;
+            car.CarType = vm.CarType;
+            car.Fuel = vm.Fuel;
+            car.Color = vm.Color;
+            car.Year = vm.Year;
+            car.Mileage = vm.Mileage;
+            car.Doors = vm.Doors;
+            car.Seats = vm.Seats;
+            car.DailyRate = vm.DailyRate;
+
+            await _carServices.UpdateCarAsync(car);
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var car = await _carServices.GetCarByIdAsync(id);
+            if (car == null) return NotFound();
+
+            var model = new EditCarViewModel
+            {
+                Id = car.Id,
+                Build = car.Build,
+                Model = car.Model,
+                CarType = car.CarType,
+                Fuel = car.Fuel,
+                Color = car.Color,
+                Year = car.Year,
+                Mileage = car.Mileage,
+                Doors = car.Doors,
+                Seats = car.Seats,
+                DailyRate = car.DailyRate
+            };
+
+            return View(model);
+        }
     }
 }

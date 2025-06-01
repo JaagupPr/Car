@@ -35,5 +35,11 @@ namespace Car.ApplicationServices.Services
             return await _context.Cars
                 .FirstOrDefaultAsync(v => v.Id == id && !v.Deleted);
         }
+        public async Task UpdateCarAsync(Vehicle vehicle)
+        {
+            vehicle.ModifiedAt = DateTime.UtcNow;
+            _context.Cars.Update(vehicle);
+            await _context.SaveChangesAsync();
+        }
     }
 }
